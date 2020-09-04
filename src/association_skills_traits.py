@@ -158,6 +158,9 @@ def preprocess_and_analysis():
     df2['cut_Age'] = pd.cut(df2['Age '], bins=cut_bins, labels=cut_labels_4)
     print(df2.head())
 
+    df2['Gender '].replace(0, 'Female',inplace=True)
+    df2['Gender '].replace(1, 'Male',inplace=True)
+
 
     ### Data Transformation (conversion)
     df3 = pd.get_dummies(df2)
