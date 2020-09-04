@@ -183,7 +183,7 @@ def get_frq_items(ip, min_support):
 
 def get_association_rules(frq_items):
     rules = association_rules(frq_items, metric ="lift", min_threshold = 1)
-    return rules.sort_values(['confidence', 'lift'], ascending =[False, False])
+    return rules.sort_values(['lift', 'confidence'], ascending =[False, False])
 
 
 def execute(ip, min_support):
@@ -215,7 +215,7 @@ def main():
     frq_items = apriori(ip, min_support = 0.2, use_colnames = True)
     output.write("\n--------------Frequent Items & support Count = 0.2---------------------\n")
     output.write(frq_items.to_string(header = True, index = True))
-    rules = association_rules(frq_items, metric ="lift", min_threshold = 1)
+    rules = get_association_rules(frq_items)
     output.write("\n\n\n\n--------------Association rules---------------------\n")
     output.write(rules.to_string(header = True, index = True))
     output.close()
